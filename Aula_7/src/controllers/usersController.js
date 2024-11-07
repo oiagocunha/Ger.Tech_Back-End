@@ -1,8 +1,12 @@
-const usersModel = require('../models/usersModel')
+const usersModel = require('../models/usersModel');
+const bcrypt = require('bcrypt');
 
 
 const createNewUsers = async (req, res) => {
     const { nome, sobrenome, email, senha } = req.body;
+    const saltRounds = 10; // CRIPTOGRAFIA DA SENHA ENVIADA NO BODY
+
+    const senhaHast = await bcrypt.hash(senha, saltRounds)
 
     // CRIANDO UM NOVO USUÁRIO
     const newUser = await usersModel.create({
@@ -16,9 +20,9 @@ const createNewUsers = async (req, res) => {
     res.status(201).send({
         message: `Usuário ${newUser.first_name}, ID: ${newUser.id} criado com sucesso!`
     })
-}
+};
 
-const getAllUsers = async (req, res, next) => {
+const getAllUsers = async (req, res) => {
     try {
 
         const users = await usersModel.findAll();
@@ -31,26 +35,34 @@ const getAllUsers = async (req, res, next) => {
     }
 }
 
-const updateUserById = async (req, res, next) => {
+const updateUserById = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const user = await usersModel.findByPk(id);
     try {
-        const id = parseInt(req.params.id)
-        await userModel.userUpdate(
-            { ...req.body },
-            { where: { id: id } }
-        );
+        if (user) {
+            await usersModel.update(
+                {...req.body},
+                {where: {id: id}}
+            );
+            
+            res.status(201).send({
+                message: ` Usuário de ID: ${id} alterado com sucesso!`
+            });
 
-        res.status(201).send({
-            message: `Usuário alterado com sucesso! ID: ${id}`
-        })
-
+        } else {
+            res.status(400).send({
+                message: `O usuário de ID: ${id} não foi encontrado.`
+            });
+        }
     } catch (error) {
         res.send({
-            message: `Erro ao alterar os usuários. ${error}`
-        })
+            message: `Algo de errado aconteceu ao atualizar o usuário. Erro: ${error}`
+        });
     }
+
 }
 
-const deleteUserById = async (req, res, next) => {
+const deleteUserById = async (req, res) => {
     try {
         const id = parseInt(req.params.id)
         await userModel.userDelete(
@@ -68,6 +80,7 @@ const deleteUserById = async (req, res, next) => {
         })
     }
 }
+
 
 module.exports = {
     createNewUsers,
