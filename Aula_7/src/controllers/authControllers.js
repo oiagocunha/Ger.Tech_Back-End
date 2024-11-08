@@ -1,12 +1,17 @@
-const users = require('../mocks/userList');
+const usersModel = require('../models/usersModel');
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/dotenvConfig');
+const bcrypt = require('bcrypt');
 
 function loginAuth(req, res) {
-    const { email, password } = req.body;
-    const user = users.find((user) => user.email === email && user.password === password);
-
     try {
+        const { email, password } = req.body;
+        const user = await usersModel.findOne({
+            where: {email}
+        })
+        const userPassword = user ? user.password : ''
+        const hashValid = await bcrypt.compare(password, userPassword)
+
         if (user) {
             const token = jwt.sign({ id: user.id, name: user.name }, jwtSecret, { expiresIn: '3h' })
             res.send({
@@ -25,7 +30,6 @@ function loginAuth(req, res) {
         res.send(`Algo deu errado! Erro: ${error}`)
     }
 }
-
 
 module.exports = {
     loginAuth

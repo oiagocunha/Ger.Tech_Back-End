@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const createNewUsers = async (req, res) => {
     const { nome, sobrenome, email, senha } = req.body;
     const saltRounds = 10; // CRIPTOGRAFIA DA SENHA ENVIADA NO BODY
-
     const senhaHast = await bcrypt.hash(senha, saltRounds)
 
     // CRIANDO UM NOVO USUÁRIO

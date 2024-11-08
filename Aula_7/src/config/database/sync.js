@@ -1,4 +1,6 @@
 const connection = require('./connection');
+const userModel = require ('../../models/usersModel');
+const adressModel = require ('../../models/adressModel');
 require('../../models/usersModel');
 
 (async () => {
