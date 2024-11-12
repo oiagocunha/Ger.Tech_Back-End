@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1731442034572" clover="3.2.0">
+  <project timestamp="1731442034572" name="All files">
+    <metrics statements="21" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4" elements="25" coveredelements="21" complexity="0" loc="21" ncloc="21" packages="1" files="1" classes="1"/>
+    <file name="operacoesController.js" path="C:\Users\iago6223\Desktop\Ger.Tech\Back-End\Ger.Tech_Back-End\Aula_10\src\controllers\operacoesController.js">
+      <metrics statements="21" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="3" type="stmt"/>
+      <line num="3" count="3" type="stmt"/>
+      <line num="4" count="3" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="11" count="3" type="stmt"/>
+      <line num="12" count="3" type="stmt"/>
+      <line num="13" count="3" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="20" count="3" type="stmt"/>
+      <line num="21" count="3" type="stmt"/>
+      <line num="22" count="3" type="stmt"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="29" count="3" type="stmt"/>
+      <line num="30" count="3" type="stmt"/>
+      <line num="31" count="3" type="stmt"/>
+      <line num="33" count="0" type="stmt"/>
+      <line num="37" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
